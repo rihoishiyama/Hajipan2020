@@ -33,6 +33,9 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
     // ishiyama テスト ゲームオーバー管理
     [SerializeField] private GameOver m_gameOver;
 
+    // デバッグ用スクリプト
+    [SerializeField] private DebugModeList m_debugModeList;
+
     //MainControllerで加えた
     [SerializeField]
     private Text roomNumText;
@@ -85,7 +88,8 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
             isEnableStart = false;
         }
 
-        if (GameState.e_GameState.GameStart == (GameState.e_GameState)customProperties["GameState"] && !isFinishStart)
+        if ((GameState.e_GameState.GameStart == (GameState.e_GameState)customProperties["GameState"] && !isFinishStart)
+            || (m_debugModeList.is_one_player_mode && !isFinishStart))
         {
             StartCoroutine(GameStartProcess());
             Debug.Log("started GameState Get: " + GameState.GetGameState());
