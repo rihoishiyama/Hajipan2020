@@ -20,6 +20,9 @@ public class GameOver : MonoBehaviourPunCallbacks
     private bool m_isCreateTank = false;
     private float m_countdown = 10.0f;
 
+    // デバッグ用スクリプト
+    [SerializeField] private DebugModeList m_debugModeList;
+
     void Awake()
     {
         m_gameOverPanel.SetActive(false);
@@ -49,6 +52,10 @@ public class GameOver : MonoBehaviourPunCallbacks
         }
 
         int totalPlayerNum = (PhotonNetwork.CurrentRoom.CustomProperties["alivePlayer"] is int value) ? value : 0;
+        if (m_debugModeList.is_one_player_mode)
+        {
+            totalPlayerNum = 2;
+        }
         if (totalPlayerNum <= 1 && GameState.GetGameState() != GameState.e_GameState.Mactting)
         {
             int userId = (PhotonNetwork.LocalPlayer.CustomProperties["UserId"] is int _value) ? _value : 0;
