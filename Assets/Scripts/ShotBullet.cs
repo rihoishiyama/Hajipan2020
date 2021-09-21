@@ -65,7 +65,7 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 	{
 		// プレファブから砲弾(Shell)オブジェクトを作成し、それをshellという名前の箱に入れる。
 		GameObject shell = PhotonNetwork.Instantiate("bullet", shotPlace.position, Quaternion.identity, 0);
-		//GameObject shell = Instantiate(shellPrefab, shotPlace.position, Quaternion.identity);
+		shell.GetComponent<Bullet>().SetBulletParam(1.0f, 1.0f, 2, Color.red);
 
 		// Rigidbodyの情報を取得し、それをshellRigidbodyという名前の箱に入れる。
 		Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();

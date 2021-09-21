@@ -7,7 +7,7 @@ using UnityEngine;
 public class DebugModeList : MonoBehaviour
 {
     /*以下にデバッグ用の変数を宣言*/
-    [Header("ゲーム開始後一回Gameタブ以外をクリックしてくれ")]
+    [Header("ゲーム開始後Gameタブをアクティブにして下さい")]
     public bool is_one_player_mode = false;
 
     /*-------------------------------------*/

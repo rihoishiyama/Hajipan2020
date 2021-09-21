@@ -8,30 +8,41 @@ public class Bullet : MonoBehaviourPunCallbacks
 {
 	/* パラメータ */
 	[SerializeField] private float m_attack_power = 1.0f; //火力
-	[SerializeField] private Color m_bullet_color = Color.red; //弾の色
 	[SerializeField] private float m_bullet_size  = 1.0f; //弾の大きさ
 	[SerializeField] private int   m_rebound_limit = 1; //跳ね返る上限
+	[SerializeField] private Color m_bullet_color = Color.red; //弾の色
 	/* ----------------------------------------- */
 
 	/*
 	 * 挙動方法
 	 * 
-	 * 受け取ったパラメータ入力値を設定
-	 * 色を変える
-	 * Todo:相手のタンクにどうやってダメージ与えよう。。。
-	 * あとはそれぞれパラメーターに沿って処理を書く
+	 * 1.受け取ったパラメータ入力値を設定 ok
+	 * 2.色を変える ok
+	 * 3.相手のタンクにどうやってダメージ与えよう。。。→以下みたいなの書けば大丈夫
+	 * void OnCollisionEnter2D(Collision2D collision) {
+			if (collision.gameObject.GetComponent<Player>()) {
+				collision.gameObject.GetComponent<Player>().Damage(1);
+			}
+		}
+	 * 4.あとはそれぞれパラメーターに沿って処理を書く
 	 */
 
 
 
+	public void SetBulletParam(float attack_power, float size, int rebound_limit, Color color)
+	{
+		//パラメータ初期設定
+		m_attack_power	= attack_power;
+		m_bullet_size   = size;
+		m_rebound_limit = rebound_limit;
+		m_bullet_color  = color;
+		SetBulletColor(color);
+	}
 
-
-
-
-
-
-
-
+	void SetBulletColor(Color color)
+	{
+		this.gameObject.GetComponent<Renderer>().material.color = color;
+	}
 
 
 
@@ -48,7 +59,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-		this.gameObject.GetComponent<Material>().color = Color.red;   
+		//this.gameObject.GetComponent<Material>().color = Color.red;   
     }
 
 
@@ -64,7 +75,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 			{
 				if (m_photonview.IsMine)
 				{
-				ShotBullet.bulletcount -= 1;
+					ShotBullet.bulletcount -= 1;
 				}
 				PhotonNetwork.Destroy(this.gameObject);
 			}
@@ -80,7 +91,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 
 			if (m_photonview.IsMine)
 			{
-			ShotBullet.bulletcount -= 1;
+				ShotBullet.bulletcount -= 1;
 			}
 			PhotonNetwork.Destroy(this.gameObject);
 		}
@@ -88,9 +99,18 @@ public class Bullet : MonoBehaviourPunCallbacks
 		//攻撃処理
 		if (other.gameObject.CompareTag("Player"))
 		{
+
+			//TODO:Tank側にダメージ処理追加されたらここ追加
+			/*
+			if (other.gameObject.GetComponent<TankPlayer>())
+			{
+				other.gameObject.GetComponent<TankPlayer>().Damage(1);
+			}
+			*/
+
 			if (m_photonview.IsMine)
 			{
-			ShotBullet.bulletcount -= 1;
+				ShotBullet.bulletcount -= 1;
 			}
 			PhotonNetwork.Destroy(this.gameObject);
 		}
