@@ -23,7 +23,7 @@ public class TankPlayer : MonoBehaviourPunCallbacks//, IPunObservable
 	private Quaternion startRotation;
 	private Quaternion endRotation;
 	private float elapsedTime = 0f;
-	public float moveSpeed = 10f;
+	public float moveSpeed = 4f;
 	public AudioClip dieSound;
 	public Joystick joystick;
 
@@ -54,6 +54,15 @@ public class TankPlayer : MonoBehaviourPunCallbacks//, IPunObservable
 				shotBullet.ButtonShot();
 			}
 		}
+		// 自分の生成したタンクの移動を制御をする
+        if (photonView.IsMine && GameState.m_gameState == GameState.e_GameState.Game) {
+            var input = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            if (input != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(input.normalized);
+                transform.Translate(0f, 0f , moveSpeed * Time.deltaTime);
+            }      
+        }
 	}
 
 	private void OnCollisionEnter(Collision other)
