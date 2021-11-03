@@ -57,12 +57,6 @@ public class Bullet : MonoBehaviourPunCallbacks
 	[SerializeField] private PhotonView m_photonview;
 
 
-    void Awake()
-    {
-		//this.gameObject.GetComponent<Material>().color = Color.red;   
-    }
-
-
     void OnCollisionEnter(Collision other)
 	{
 		//跳ね返り処理
@@ -70,14 +64,14 @@ public class Bullet : MonoBehaviourPunCallbacks
 		{
 
 			rebound_cnt += 1;
-
-			if (rebound_cnt > 1)
+			Debug.Log(rebound_cnt + "と" + m_rebound_limit);
+			if (rebound_cnt > m_rebound_limit)
 			{
-				if (m_photonview.IsMine)
-				{
-					ShotBullet.bulletcount -= 1;
-				}
-				PhotonNetwork.Destroy(this.gameObject);
+                if (m_photonview.IsMine)
+                {
+                    ShotBullet.bulletcount -= 1;
+                }
+            PhotonNetwork.Destroy(this.gameObject);
 			}
 			else
 			{

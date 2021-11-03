@@ -14,6 +14,7 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 	[SerializeField] private AudioClip m_shot_audio; //発射音 散弾の場合音を一つにしたいため
 	[SerializeField] private float m_shot_speed = 1.0f; //弾速
 	/* ----------------------------------------- */
+	private const float DEFAULT_MOVE_SPEED = 4.0f; //ここに書くのがいいのかわからんから消すかも
 
 	/*
 	 * 挙動方法
@@ -25,6 +26,8 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 	 * 各タイプのshot関数を用意する（今の中身から根本は変えなくていい）
 	 * 入力値によってどの関数にするか選択
 	 * Todo：どうにかしてBullet関数に初期値を入力したい
+	 * 
+	 * new!弾のスピード＋車体の速さ＋弾の大きさ　を考慮してshotPlaceのz軸の位置を決める
 	 */
 
 
@@ -40,7 +43,7 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 	public AudioClip shotmissSound;
 	public static int bulletcount;
 
-	public void ButtonShot()
+	public void ButtonShot(float t_move_speed)
 	{
         // Shot();
         // AudioSource.PlayClipAtPoint(shotSound, transform.position);
@@ -49,7 +52,7 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 		// もしも「Fire1」というボタンが押されたら（条件）
 		if (bulletcount < 5)
 		{
-			Shot();
+			Shot(t_move_speed);
 			// ②効果音を再生する。
 			AudioSource.PlayClipAtPoint(shotSound, transform.position);
 			bulletcount += 1;
@@ -61,11 +64,17 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 		// }
 	}
 
-	public void Shot()
+	public void Shot(float t_move_speed)
 	{
+		// shotPlaceの位置を計算（弾のスピード＋タンクの速さ＋弾の大きさから）
+		float add_zAxis = (t_move_speed / DEFAULT_MOVE_SPEED);
+		Debug.Log("Z軸変更値：" + add_zAxis);
+		Vector3 instance_pos = new Vector3(shotPlace.localPosition.x, shotPlace.localPosition.y, shotPlace.localPosition.z + add_zAxis);
+		// ワールド座標に変換
+		instance_pos = transform.TransformPoint(instance_pos);
 		// プレファブから砲弾(Shell)オブジェクトを作成し、それをshellという名前の箱に入れる。
-		GameObject shell = PhotonNetwork.Instantiate("bullet", shotPlace.position, Quaternion.identity, 0);
-		shell.GetComponent<Bullet>().SetBulletParam(1.0f, 1.0f, 2, Color.red);
+		GameObject shell = PhotonNetwork.Instantiate("bullet", instance_pos, Quaternion.identity, 0);
+		shell.GetComponent<Bullet>().SetBulletParam(1.0f, 1.0f, 1, Color.red);
 
 		// Rigidbodyの情報を取得し、それをshellRigidbodyという名前の箱に入れる。
 		Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
