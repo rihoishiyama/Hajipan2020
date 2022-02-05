@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7847644734172569427}
+  - component: {fileID: 7847644734172569426}
   - component: {fileID: 7847644734172569425}
   - component: {fileID: 7847644734172569424}
   - component: {fileID: 7847644734172569431}
   - component: {fileID: 7847644734172569430}
   - component: {fileID: 1586326304659401864}
   - component: {fileID: -5762656114867330215}
+  - component: {fileID: 1382075497548674291}
   m_Layer: 0
   m_Name: TankPlayer
   m_TagString: Player
@@ -40,6 +42,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7847644734172569426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847644734172569436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10f4440faca2384788f0d16bfd0ed5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  joystick: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82, type: 3}
 --- !u!54 &7847644734172569425
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81,13 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162aa1cbe9a124fe69d4f7eef770f1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_vector: {x: 0, y: 0, z: 0}
-  m_bullet_count: 5
-  m_shot_mode:
-  - Singl
-  - Multi
-  m_shot_audio: {fileID: 0}
-  m_shot_speed: 1
   shotPlace: {fileID: 7847644735331768703}
   shellPrefab: {fileID: 1068027943656270186, guid: 88c8be3d36811486fb27932f21bac7f3,
     type: 3}
@@ -109,7 +118,7 @@ MonoBehaviour:
   onFireButton: {fileID: 0}
   shotBullet: {fileID: 7847644734172569431}
   photonview: {fileID: 1586326304659401864}
-  moveSpeed: 4
+  moveSpeed: 10
   dieSound: {fileID: 8300000, guid: 6772afd3c062242ec8c1138e97e4d310, type: 3}
   joystick: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82, type: 3}
 --- !u!114 &1586326304659401864
@@ -149,6 +158,18 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &1382075497548674291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847644734172569436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3489696dfcf74d86bc62cf8196a0938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7847644735331768696
 GameObject:
   m_ObjectHideFlags: 0

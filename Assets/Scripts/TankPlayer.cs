@@ -27,6 +27,18 @@ public class TankPlayer : MonoBehaviourPunCallbacks//, IPunObservable
 	public AudioClip dieSound;
 	public Joystick joystick;
 
+
+	// enum名仮（現状色変更のみ）
+	public enum shotType
+	{
+		red = 0,
+		blue,
+		green,
+	}
+
+	[SerializeField]
+	private shotType type = shotType.red; 
+
 	void Awake()
 	{
 		startPosition = transform.position;
@@ -51,7 +63,7 @@ public class TankPlayer : MonoBehaviourPunCallbacks//, IPunObservable
 
 		if (Input.GetKeyDown(KeyCode.Space) && GameState.m_gameState == GameState.e_GameState.Game) {
 			if (photonView.IsMine) {
-				shotBullet.ButtonShot();
+				shotBullet.ButtonShot(type, moveSpeed);
 			}
 		}
 		// 自分の生成したタンクの移動を制御をする
