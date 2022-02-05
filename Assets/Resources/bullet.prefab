@@ -60,6 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &6399780320842729872
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -109,9 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddde14b78addb4040931f845c0788aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonview: {fileID: 3232802900557936397}
+  m_attack_power: 1
+  m_bullet_size: 1
+  m_rebound_limit: 1
+  m_bullet_color: {r: 1, g: 0, b: 0, a: 1}
   reboundSound: {fileID: 8300000, guid: 503f3c38a2ac54425b1f53974cb9c75a, type: 3}
-  reboundcount: 0
+  m_photonview: {fileID: 3232802900557936397}
 --- !u!54 &7833586118297964177
 Rigidbody:
   m_ObjectHideFlags: 0

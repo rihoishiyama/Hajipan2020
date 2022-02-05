@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 		{
 
 			rebound_cnt += 1;
-			Debug.Log(rebound_cnt + "と" + m_rebound_limit);
+			Debug.Log(rebound_cnt + " / " + m_rebound_limit);
 			if (rebound_cnt > m_rebound_limit)
 			{
                 if (m_photonview.IsMine)

@@ -52,17 +52,20 @@ public class ShotBullet : MonoBehaviourPunCallbacks
         // AudioSource.PlayClipAtPoint(shotSound, transform.position);
 		// if (photonView.isMine)
 		// {
-		// もしも「Fire1」というボタンが押されたら（条件）
 		if (bulletcount < 5)
 		{
 			switch(typeID)
 			{
-				case TankPlayer.shotType.a:
+				case TankPlayer.shotType.red:
 					Shot(tank_move_speed, m_shot_speed, m_shot_size, Color.red);
 					break;
 				
-				case TankPlayer.shotType.b:
+				case TankPlayer.shotType.blue:
 					Shot(tank_move_speed, m_shot_speed, m_shot_size, Color.blue);
+					break;
+				
+				case TankPlayer.shotType.green:
+					Shot(tank_move_speed, m_shot_speed, m_shot_size, Color.green);
 					break;
 
 				default:
@@ -84,28 +87,6 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 
 	public void Shot(float tank_move_speed, float bullet_speed, float bullet_size, Color color)
 	{
-		// 割合計算
-		float tank_speed_rate   = tank_move_speed / DEFAULT_MOVE_SPEED;
-		float bullet_speed_rate = bullet_speed / DEFAULT_BULLET_SPEED;
-		if (bullet_speed_rate < 1.0f) {
-			bullet_speed_rate = 1.0f + (1.0f - bullet_speed_rate); 
-		}
-		else {
-			bullet_speed_rate = 1.0f;
-		}
-		float bullet_size_rate  = (bullet_size / DEFAULT_BULLET_SIZE);
-		Debug.Log("sizeの割合：" + bullet_size_rate);
-		bullet_size_rate = Mathf.Log(bullet_size_rate, 10.0f/*ここの値を調整*/);
-		// Debug.Log("割合：" + bullet_size_rate);
-		if (bullet_size_rate > 1.0f) {
-			//bullet_size_rate = bullet_size_rate * 0.7f;
-			// rateが大きくなるほど増加量は減るように
-			Debug.Log("割合：" + bullet_size_rate);
-		}
-		else {
-			bullet_size_rate = 1.0f;
-		}
-
 		// プレファブから砲弾(Shell)オブジェクトを作成し、それをshellという名前の箱に入れる。
 		GameObject shell = PhotonNetwork.Instantiate("bullet", shotPlace.position, Quaternion.identity, 0);
 		shell.GetComponent<Bullet>().SetBulletParam(1.0f, bullet_size, 1, color);
