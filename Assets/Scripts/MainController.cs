@@ -49,12 +49,14 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
     private bool isEnableStart = false;
     private bool isFinishStart = false;
     private int playerCnt;
-    private Hashtable customProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+    private Hashtable customProperties;
 
     ////////////////////////////////////////////////////////////////////////////
 
     private void Start()
     {
+        customProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+
         // シーン遷移用処理 ichikawa
         PhotonNetwork.IsMessageQueueRunning = true;
         Debug.Log(PhotonNetwork.CurrentRoom.Name + "に入室");

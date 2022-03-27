@@ -63,6 +63,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.IsMessageQueueRunning = false;
         GameState.SetGameState(GameState.e_GameState.Mactting);
         SceneManager.LoadSceneAsync("MainGameScene", LoadSceneMode.Single);
+        // SceneManager.LoadSceneAsync("MainGameScene_stump", LoadSceneMode.Single);
     }
 
     public void StartInit(bool startFlag = true)

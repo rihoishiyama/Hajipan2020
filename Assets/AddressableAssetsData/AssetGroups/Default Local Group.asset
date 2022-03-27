@@ -20,9 +20,20 @@ MonoBehaviour:
   - m_GUID: a916b589715564146a882e5e4d4cdf35
     m_Address: MainGame
     m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 177692592942840192, guid: a916b589715564146a882e5e4d4cdf35,
+      type: 3}
+    m_TargetAsset: {fileID: 177692592942840192, guid: a916b589715564146a882e5e4d4cdf35,
+      type: 3}
+  - m_GUID: 33d66432c5d0149e28da820040cb3151
+    m_Address: Assets/Prefabs/MainGame_stump.prefab
+    m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 177692592942840192, guid: 33d66432c5d0149e28da820040cb3151,
+      type: 3}
+    m_TargetAsset: {fileID: 177692592942840192, guid: 33d66432c5d0149e28da820040cb3151,
+      type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c69f87507dda54fa593882b761230603, type: 2}
   m_SchemaSet:
