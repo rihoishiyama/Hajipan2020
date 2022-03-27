@@ -124,7 +124,7 @@ MonoBehaviour:
   onFireButton: {fileID: 0}
   shotBullet: {fileID: 7847644734172569431}
   photonview: {fileID: 1586326304659401864}
-  moveSpeed: 10
+  moveSpeed: 5
   dieSound: {fileID: 8300000, guid: 6772afd3c062242ec8c1138e97e4d310, type: 3}
   joystick: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82, type: 3}
   type: 0

@@ -62,8 +62,19 @@ public class MenuController : MonoBehaviourPunCallbacks
 
         PhotonNetwork.IsMessageQueueRunning = false;
         GameState.SetGameState(GameState.e_GameState.Mactting);
-        SceneManager.LoadSceneAsync("MainGameScene", LoadSceneMode.Single);
-        // SceneManager.LoadSceneAsync("MainGameScene_stump", LoadSceneMode.Single);
+
+        switch (PhotonNetwork.CurrentRoom.Name)
+        {
+            case "Room1":
+                SceneManager.LoadSceneAsync("MainGameScene", LoadSceneMode.Single);
+                break;
+            case "Room2":
+                SceneManager.LoadSceneAsync("MainGameScene_stump", LoadSceneMode.Single);
+                break;
+            default:
+                SceneManager.LoadSceneAsync("MainGameScene", LoadSceneMode.Single);
+                break;
+        }
     }
 
     public void StartInit(bool startFlag = true)

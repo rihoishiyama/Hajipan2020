@@ -27,7 +27,7 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 177692592942840192, guid: a916b589715564146a882e5e4d4cdf35,
       type: 3}
   - m_GUID: 33d66432c5d0149e28da820040cb3151
-    m_Address: Assets/Prefabs/MainGame_stump.prefab
+    m_Address: MainGame_stump
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 177692592942840192, guid: 33d66432c5d0149e28da820040cb3151,
