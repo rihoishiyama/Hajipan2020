@@ -93,6 +93,8 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
         if ((GameState.e_GameState.GameStart == (GameState.e_GameState)customProperties["GameState"] && !isFinishStart)
             || (m_debugModeList.is_one_player_mode && !isFinishStart))
         {
+            // 他のプレイヤーのレイヤー設定
+            SetOtherPlayerLayer();
             StartCoroutine(GameStartProcess());
             Debug.Log("started GameState Get: " + GameState.GetGameState());
             isFinishStart = true;
@@ -208,6 +210,9 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
         }
         m_photonView = player.GetComponent<PhotonView>();
 
+        // layer設定
+        player.layer = 8; // MyTank
+
         SetPlayerID();
 
         //m_playerID = playerCnt - 1;
@@ -309,6 +314,20 @@ public class MainController : MonoBehaviourPunCallbacks, IPunObservable
             UpdatePlayerNum(PhotonNetwork.LocalPlayer, playerSetableCountList[0]);
 
             m_playerID = GetPlayerNum(PhotonNetwork.LocalPlayer);
+        }
+    }
+
+    private void SetOtherPlayerLayer()
+    {
+        GameObject[] OtherPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach(GameObject p in OtherPlayers){
+            Debug.Log(p.layer);
+            if(p.layer == 8)
+            {
+                continue;
+            }
+            p.layer = 7; // Tank
         }
     }
 }
