@@ -49,8 +49,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 
 
 
-
-	/* 跳ね返り */
+	// 跳ね返り
 	[SerializeField] private AudioClip reboundSound;
 	private int rebound_cnt;
 
@@ -101,14 +100,50 @@ public class Bullet : MonoBehaviourPunCallbacks
 				other.gameObject.GetComponent<TankPlayer>().Damage(1);
 			}
 			*/
-
-			if (m_photonview.IsMine)
+			if( GetLayer() == 9 )
 			{
-				ShotBullet.bulletcount -= 1;
+				if (m_photonview.IsMine)
+				{
+					ShotBullet.bulletcount -= 1;
+				}
+				PhotonNetwork.Destroy(this.gameObject);
 			}
-			PhotonNetwork.Destroy(this.gameObject);
+
 		}
 			
     }
+
+
+
+	// 時間経過
+	private float m_elapsed_time = 0.0f;
+
+	void SetLayer(int layer)
+	{
+		this.gameObject.layer = layer;
+	}
+
+	int GetLayer()
+	{
+		return this.gameObject.layer;
+	}
+
+	void Start()
+	{
+		SetLayer(10); // NewBullet
+ 	}
+	void Update()
+	{
+		if(m_elapsed_time <= 1.0f)
+		{
+			m_elapsed_time += Time.deltaTime;
+
+		}
+
+		if (m_elapsed_time >= 1.0f)
+		{
+			SetLayer(9); // Bullet
+		} 
+	}
 	
 }

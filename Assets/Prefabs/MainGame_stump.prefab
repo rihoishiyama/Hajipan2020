@@ -2239,6 +2239,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_stump
       objectReference: {fileID: 0}
+    - target: {fileID: 3091214299056557244, guid: a917f6843cc222145828cefe2f799e67,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a917f6843cc222145828cefe2f799e67, type: 3}
 --- !u!4 &2964778390387190729 stripped
@@ -2410,6 +2415,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PT_Pine_Tree_03_stump (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899581772680663418, guid: 7d2041206c208f54991b199315b8f7a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6526937357192547264, guid: 7d2041206c208f54991b199315b8f7a8,
         type: 3}
@@ -2773,6 +2783,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PT_Pine_Tree_03_stump (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5899581772680663418, guid: 7d2041206c208f54991b199315b8f7a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6526937357192547264, guid: 7d2041206c208f54991b199315b8f7a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2869,6 +2884,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PT_Pine_Tree_03_stump
       objectReference: {fileID: 0}
+    - target: {fileID: 5899581772680663418, guid: 7d2041206c208f54991b199315b8f7a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6526937357192547264, guid: 7d2041206c208f54991b199315b8f7a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2964,6 +2984,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PT_Pine_Tree_03_stump (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899581772680663418, guid: 7d2041206c208f54991b199315b8f7a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6526937357192547264, guid: 7d2041206c208f54991b199315b8f7a8,
         type: 3}

@@ -92,7 +92,7 @@ public class ShotBullet : MonoBehaviourPunCallbacks
 		shell.GetComponent<Bullet>().SetBulletParam(1.0f, bullet_size, 1, color);
 		//弾のサイズ変更
 		shell.transform.localScale = new Vector3(m_shot_size, m_shot_size, m_shot_size);
-
+		
 		// Rigidbodyの情報を取得し、それをshellRigidbodyという名前の箱に入れる。
 		Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
 
