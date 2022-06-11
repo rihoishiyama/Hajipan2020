@@ -68,11 +68,7 @@ public class Bullet : MonoBehaviourPunCallbacks
 			Debug.Log(rebound_cnt + " / " + m_rebound_limit);
 			if (rebound_cnt > m_rebound_limit)
 			{
-                if (m_photonview.IsMine)
-                {
-                    ShotBullet.bulletcount -= 1;
-                }
-            PhotonNetwork.Destroy(this.gameObject);
+				DestroyMyBullet();
 			}
 			else
 			{
@@ -83,38 +79,47 @@ public class Bullet : MonoBehaviourPunCallbacks
 		//弾消失（このままでいいのでは）
 		if (other.gameObject.CompareTag("Bullet"))
 		{
-
-			if (m_photonview.IsMine)
-			{
-				ShotBullet.bulletcount -= 1;
-			}
-			PhotonNetwork.Destroy(this.gameObject);
+			DestroyMyBullet();
 		}
 
 		//攻撃処理
 		if (other.gameObject.CompareTag("Player"))
 		{
+			// layer番号
+			int other_tank 		= 7;
+			int my_tank 		= 8;
+			int not_new_bullet 	= 9;
+			int new_bullet 		= 10;
 
 			//TODO:Tank側にダメージ処理追加されたらここ追加
-			/*
 			if (other.gameObject.GetComponent<TankPlayer>())
 			{
-				other.gameObject.GetComponent<TankPlayer>().Damage(1);
-			}
-			*/
-			if( GetLayer() == 9 )
-			{
-				if (m_photonview.IsMine)
+				//other.gameObject.GetComponent<TankPlayer>().Damage(1);
+				if( other.gameObject.layer == other_tank )
 				{
-					ShotBullet.bulletcount -= 1;
+					DestroyMyBullet();
+					return;
 				}
-				PhotonNetwork.Destroy(this.gameObject);
+			}
+
+			// 他人に当たる時はnewでもok
+			// 自分に当たる時は新しくなければok
+			if( GetLayer() == not_new_bullet )
+			{
+				DestroyMyBullet();
 			}
 
 		}
 
     }
-
+	void DestroyMyBullet()
+	{
+		if (m_photonview.IsMine)
+		{
+			ShotBullet.bulletcount -= 1;
+		}
+		PhotonNetwork.Destroy(this.gameObject);
+	}
 
 
 	// 時間経過
